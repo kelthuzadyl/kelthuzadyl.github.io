@@ -1,0 +1,196 @@
+---
+import '../styles/global.css';
+import { siteConfig } from '../data/research';
+
+const base = import.meta.env.BASE_URL;
+const asset = (path: string) => `${base.replace(/\/?$/, '/')}${path.replace(/^\/?/, '')}`;
+const year = new Date().getFullYear();
+const analyticsEnabled = import.meta.env.PROD;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={`${siteConfig.fullName} - ${siteConfig.role}`} />
+    <title>{siteConfig.fullName} - {siteConfig.role}</title>
+    {analyticsEnabled && (
+      <!-- Cloudflare Web Analytics -->
+      <script
+        is:inline
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token":"a771fb0762c84ed3880b965bc2e8e192"}'
+      ></script>
+      <!-- End Cloudflare Web Analytics -->
+    )}
+  </head>
+  <body>
+    <header class="site-header section-shell">
+      <nav class="social-links" aria-label="Social profiles">
+        <a class="social-link" href={siteConfig.links.scholar} target="_blank" rel="noreferrer" aria-label="Google Scholar" title="Google Scholar">
+          <img src={asset('icons/google-scholar.svg')} alt="" aria-hidden="true" />
+        </a>
+        <a class="social-link" href={siteConfig.links.github} target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub">
+          <img src={asset('icons/github.svg')} alt="" aria-hidden="true" />
+        </a>
+        <a class="social-link" href={siteConfig.links.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn">
+          <img src={asset('icons/linkedin.svg')} alt="" aria-hidden="true" />
+        </a>
+        <a class="social-link" href={siteConfig.links.email} aria-label="Email Yilong Wang" title="Email">
+          <img src={asset('icons/mail.svg')} alt="" aria-hidden="true" />
+        </a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero section-shell" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <h1 id="hero-title">{siteConfig.fullName}</h1>
+          <div class="hero-bio">
+            {siteConfig.bio.map((paragraph) => (
+              <p>
+                {paragraph.map((part) => part.href ? (
+                  <a
+                    class:list={{ 'advisor-link': part.advisor, 'lab-link': part.lab }}
+                    href={part.href}
+                    target="_blank"
+                    rel="noreferrer"
+                  >{part.text}</a>
+                ) : part.text)}
+              </p>
+            ))}
+          </div>
+        </div>
+
+        <div class="portrait-wrap">
+          <img
+            class="portrait"
+            src={asset(siteConfig.portrait)}
+            alt={`${siteConfig.fullName}, ${siteConfig.role}`}
+            width="164"
+            height="164"
+            decoding="async"
+          />
+        </div>
+      </section>
+
+      <section class="papers section-shell" aria-labelledby="papers-title">
+        <div class="papers-heading">
+          <h2 id="papers-title">Publications</h2>
+        </div>
+
+        <div class="paper-list">
+          {siteConfig.papers.map((paper) => (
+            <article class="paper-row">
+              <span class="paper-number">{paper.id}</span>
+              <div class="paper-main">
+                <div class="paper-heading">
+                  <h3>{paper.title}</h3>
+                  <p class="paper-meta">{paper.venue} {paper.year}</p>
+                </div>
+                <p class="paper-authors">
+                  {paper.authors.map((author, index) => (
+                    <Fragment>
+                      {index > 0 && (index === paper.authors.length - 1 ? ' and ' : ', ')}
+                      {author.self ? <strong>{author.name}</strong> : author.name}
+                    </Fragment>
+                  ))}
+                </p>
+                <p class="paper-summary">{paper.summary}</p>
+                <div class="paper-links">
+                  {paper.links.map((link) => (
+                    <a href={link.href} target="_blank" rel="noreferrer" aria-label={`${link.label} for ${paper.title}`}>
+                      {link.label}<span aria-hidden="true">↗</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+              <a
+                class="paper-video-frame"
+                href={paper.video.fullSrc}
+                target="_blank"
+                rel="noreferrer"
+                data-full-video={paper.video.fullSrc}
+                data-video-title={paper.title}
+                aria-label={`Play full video for ${paper.title}`}
+                title="Play full video"
+              >
+                <video
+                  class="paper-video"
+                  src={asset(paper.video.src)}
+                  poster={asset(paper.video.poster)}
+                  aria-label={paper.video.label}
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                ></video>
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer section-shell">
+      <span>(c) {year} {siteConfig.name}</span>
+    </footer>
+
+    <dialog class="video-dialog" data-video-dialog aria-labelledby="video-dialog-title">
+      <div class="video-dialog-inner">
+        <div class="video-dialog-header">
+          <p id="video-dialog-title" data-video-dialog-title></p>
+          <button class="dialog-close" type="button" data-video-dialog-close aria-label="Close full video" title="Close">×</button>
+        </div>
+        <video class="video-dialog-player" data-video-dialog-player controls playsinline preload="metadata"></video>
+      </div>
+    </dialog>
+
+    <script>
+      const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const syncVideoMotion = () => {
+        document.querySelectorAll<HTMLVideoElement>('.paper-video').forEach((video) => {
+          if (motionPreference.matches) {
+            video.pause();
+          } else {
+            video.play().catch(() => undefined);
+          }
+        });
+      };
+
+      syncVideoMotion();
+      motionPreference.addEventListener('change', syncVideoMotion);
+
+      const videoDialog = document.querySelector<HTMLDialogElement>('[data-video-dialog]');
+      const videoDialogPlayer = document.querySelector<HTMLVideoElement>('[data-video-dialog-player]');
+      const videoDialogTitle = document.querySelector<HTMLElement>('[data-video-dialog-title]');
+      const videoDialogClose = document.querySelector<HTMLButtonElement>('[data-video-dialog-close]');
+
+      document.querySelectorAll<HTMLAnchorElement>('[data-full-video]').forEach((link) => {
+        const openFullVideo = () => {
+          if (!videoDialog || !videoDialogPlayer || !videoDialogTitle) return;
+          videoDialogTitle.textContent = link.dataset.videoTitle ?? 'Full video';
+          videoDialogPlayer.src = link.dataset.fullVideo ?? link.href;
+          if (!videoDialog.open) videoDialog.showModal();
+          videoDialogPlayer.play().catch(() => undefined);
+        };
+
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
+          openFullVideo();
+        });
+      });
+
+      videoDialogClose?.addEventListener('click', () => videoDialog?.close());
+      videoDialog?.addEventListener('close', () => {
+        if (!videoDialogPlayer) return;
+        videoDialogPlayer.pause();
+        videoDialogPlayer.removeAttribute('src');
+        videoDialogPlayer.load();
+      });
+    </script>
+  </body>
+</html>

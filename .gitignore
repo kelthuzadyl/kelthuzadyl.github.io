@@ -1,0 +1,10 @@
+# Dependencies
+node_modules
+
+# Astro generated files
+.astro/
+dist/
+
+# Local and editor files
+.DS_Store
+*.log
