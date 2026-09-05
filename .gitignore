@@ -8,3 +8,8 @@ dist/
 # Local and editor files
 .DS_Store
 *.log
+
+# Local analytics and environment configuration
+.env
+.env.*
+!.env.example

@@ -8,8 +8,10 @@ const repository = process.env.SITE_REPO ?? '';
 const projectRoot = fileURLToPath(new URL('.', import.meta.url));
 const dependenciesRoot = realpathSync(new URL('./node_modules', import.meta.url));
 const researchConfigPath = fileURLToPath(new URL('./src/data/research.ts', import.meta.url));
+/** @type {string | undefined} */
 let lastCompleteResearchConfig;
 
+/** @type {import('vite').Plugin} */
 const stableResearchConfig = {
   name: 'stable-research-config',
   enforce: 'pre',
