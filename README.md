@@ -4,9 +4,9 @@ An Astro template for a personal research homepage, designed for GitHub Pages.
 
 ## Edit the content
 
-All personal content lives in [`src/data/research.ts`](src/data/research.ts). Update the profile fields, GitHub link, and the four entries in `papers`. Each paper supports a title, venue, year, authors, summary, tags, and links.
+All personal content lives in [`src/data/research.ts`](src/data/research.ts). Update the profile fields, social links, and the entries in `papers`. Each paper supports a title, venue, year, authors, summary, links, and an optional preview video.
 
-The supplied portrait is copied to `public/profile_image.PNG`. Replace that file to use a different image, or change the `portrait` value in the config.
+The current portrait is stored at `public/profile_square.jpg`. Replace that file to use a different image, or change the `portrait` value in the config.
 
 ## Run locally
 
@@ -31,3 +31,9 @@ SITE_REPO=your-repository npm run build
 ```
 
 In the repository settings, set **Pages / Source** to **GitHub Actions**.
+
+## License and reuse
+
+The website source and template are free to use, modify, and distribute under the [MIT License](LICENSE). When creating your own site, replace the personal biography, portrait, publication text, and media with your own material.
+
+Personal images, publication videos, paper content, and other research assets are not covered by the MIT License and remain the property of their respective copyright holders.
