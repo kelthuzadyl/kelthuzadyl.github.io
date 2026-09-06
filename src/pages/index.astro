@@ -106,7 +106,11 @@ const analyticsEnabled = import.meta.env.PROD && Boolean(analyticsToken);
                   {paper.authors.map((author, index) => (
                     <Fragment>
                       {index > 0 && (index === paper.authors.length - 1 ? ' and ' : ', ')}
-                      {author.self ? <strong>{author.name}</strong> : author.name}
+                      {author.href ? (
+                        <a class="paper-author-link" href={author.href} target="_blank" rel="noreferrer">
+                          {author.self ? <strong>{author.name}</strong> : author.name}
+                        </a>
+                      ) : author.self ? <strong>{author.name}</strong> : author.name}
                     </Fragment>
                   ))}
                 </p>
