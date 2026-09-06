@@ -6,7 +6,6 @@ export type PaperLink = {
 export type Author = {
   name: string;
   self?: boolean;
-  href?: string;
 };
 
 export type BioPart = {
@@ -32,9 +31,7 @@ export type Paper = {
   };
 };
 
-const YILONG_WANG_URL = 'https://kelthuzadyl.github.io/';
-const CHENG_QIAN_URL = 'https://scholar.google.com/citations?user=lxL6FqcAAAAJ&hl=en';
-const EDWARD_JOHNS_URL = 'https://scholar.google.com/citations?user=dHec-LkAAAAJ&hl=en';
+const EDWARD_JOHNS_URL = 'https://scholar.google.com/citations?hl=en&user=dHec-LkAAAAJ&view_op=list_works';
 const YIANNIS_DEMIRIS_URL = 'https://scholar.google.com/citations?hl=en&user=B2o5i-AAAAAJ&view_op=list_works';
 const ROBOT_LEARNING_LAB_URL = 'https://www.robot-learning.uk/';
 const PERSONAL_ROBOTICS_LAB_URL = 'https://www.imperial.ac.uk/personal-robotics/';
@@ -79,15 +76,15 @@ export const siteConfig = {
       venue: 'CoRL',
       year: '2026',
       authors: [
-        { name: 'Yilong Wang', self: true, href: YILONG_WANG_URL },
-        { name: 'Cheng Qian', href: CHENG_QIAN_URL },
-        { name: 'Edward Johns', href: EDWARD_JOHNS_URL },
+        { name: 'Yilong Wang', self: true },
+        { name: 'Cheng Qian' },
+        { name: 'Edward Johns' },
       ],
       summary: 'One-shot garment folding from a human demonstration trained entirely in simulation.',
       links: [
         { label: 'Paper', href: 'https://arxiv.org/abs/2606.04269' },
-        { label: 'Code', href: 'https://github.com/kelthuzadyl/Instant-Fold' },
         { label: 'Project', href: 'https://instant-fold.github.io/' },
+        { label: 'Code', href: 'https://github.com/kelthuzadyl/Instant-Fold' },
       ],
       video: {
         src: 'videos/instant-fold.mp4',
@@ -102,11 +99,11 @@ export const siteConfig = {
       venue: 'CoRL',
       year: '2026',
       authors: [
-        { name: 'Cheng Qian', href: CHENG_QIAN_URL },
+        { name: 'Cheng Qian' },
         { name: 'Ruomeng Fan' },
         { name: 'Yifei Ren' },
-        { name: 'Yilong Wang', self: true, href: YILONG_WANG_URL },
-        { name: 'Edward Johns', href: EDWARD_JOHNS_URL },
+        { name: 'Yilong Wang', self: true },
+        { name: 'Edward Johns' },
       ],
       summary: 'RGB-only in-context imitation learning trained entirely on scalable synthetic data.',
       links: [
@@ -126,16 +123,16 @@ export const siteConfig = {
       venue: 'ICRA',
       year: '2026',
       authors: [
-        { name: 'Yilong Wang', self: true, href: YILONG_WANG_URL },
-        { name: 'Cheng Qian', href: CHENG_QIAN_URL },
+        { name: 'Yilong Wang', self: true },
+        { name: 'Cheng Qian' },
         { name: 'Ruomeng Fan' },
-        { name: 'Edward Johns', href: EDWARD_JOHNS_URL },
+        { name: 'Edward Johns' },
       ],
       summary: 'Active viewpoint optimization within Gaussian Splats for imitation learning.',
       links: [
         { label: 'Paper', href: 'https://arxiv.org/abs/2511.18140' },
-        { label: 'Code', href: 'https://github.com/kelthuzadyl/ObAct' },
         { label: 'Project', href: 'https://obact.github.io/' },
+        { label: 'Code', href: 'https://github.com/kelthuzadyl/ObAct' },
       ],
       video: {
         src: 'videos/observer-actor.mp4',
@@ -150,14 +147,14 @@ export const siteConfig = {
       venue: 'ICRA',
       year: '2025',
       authors: [
-        { name: 'Yilong Wang', self: true, href: YILONG_WANG_URL },
-        { name: 'Edward Johns', href: EDWARD_JOHNS_URL },
+        { name: 'Yilong Wang', self: true },
+        { name: 'Edward Johns' },
       ],
       summary: 'One-shot imitation via visual servoing and trajectory replay for precise tasks.',
       links: [
         { label: 'Paper', href: 'https://arxiv.org/abs/2503.06831' },
-        { label: 'Code', href: 'https://github.com/kelthuzadyl/ODIL' },
         { label: 'Project', href: 'https://kelthuzadyl.github.io/ODIL/' },
+        { label: 'Code', href: 'https://github.com/kelthuzadyl/ODIL' },
       ],
       video: {
         src: 'videos/gallery-preview.mp4',

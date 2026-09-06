@@ -243,19 +243,6 @@ h1 {
   font-weight: 700;
 }
 
-.paper-author-link {
-  color: inherit;
-  text-decoration-line: underline;
-  text-decoration-color: var(--line);
-  text-underline-offset: 2px;
-  transition: color .18s ease, text-decoration-color .18s ease;
-}
-
-.paper-author-link:hover {
-  color: var(--teal);
-  text-decoration-color: var(--teal);
-}
-
 .paper-summary {
   max-width: 720px;
   margin-bottom: 11px;
