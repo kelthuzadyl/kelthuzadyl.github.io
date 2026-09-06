@@ -132,13 +132,40 @@ h1 {
   justify-self: end;
 }
 
-.portrait {
-  display: block;
-  width: 164px;
-  height: auto;
+.portrait-stage {
+  position: relative;
+  width: 100%;
   aspect-ratio: 1;
+}
+
+.portrait {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
   border-radius: 3px;
   object-fit: cover;
+  transition: opacity .24s ease, transform .24s ease;
+}
+
+.portrait-lulu {
+  opacity: 0;
+  transform: scale(.96) rotate(-3deg);
+}
+
+.portrait-wrap:hover .portrait-profile {
+  opacity: 0;
+  transform: scale(.96) rotate(3deg);
+}
+
+.portrait-wrap:hover .portrait-lulu {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portrait { transition: none; }
 }
 
 .papers { padding-block: var(--bio-publications-gap) 68px; }
@@ -387,7 +414,7 @@ h1 {
   }
   .hero-bio { font-size: 13.5px; }
   .portrait-wrap,
-  .portrait { width: 136px; }
+  .portrait-stage { width: 136px; }
   .portrait-wrap { padding-top: 0; justify-self: start; }
   .papers { padding-block: var(--bio-publications-gap) 56px; }
   .papers h2 { font-size: 28px; }

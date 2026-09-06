@@ -15,7 +15,7 @@ const analyticsEnabled = import.meta.env.PROD && Boolean(analyticsToken);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={`${siteConfig.fullName} - ${siteConfig.role}`} />
-    <title>{siteConfig.fullName} - {siteConfig.role}</title>
+    <title>Yilong Wang</title>
     {analyticsEnabled && (
       <!-- Cloudflare Web Analytics -->
       <script
@@ -66,14 +66,25 @@ const analyticsEnabled = import.meta.env.PROD && Boolean(analyticsToken);
         </div>
 
         <div class="portrait-wrap">
-          <img
-            class="portrait"
-            src={asset(siteConfig.portrait)}
-            alt={`${siteConfig.fullName}, ${siteConfig.role}`}
-            width="164"
-            height="164"
-            decoding="async"
-          />
+          <div class="portrait-stage">
+            <img
+              class="portrait portrait-profile"
+              src={asset(siteConfig.portrait)}
+              alt={`${siteConfig.fullName}, ${siteConfig.role}`}
+              width="164"
+              height="164"
+              decoding="async"
+            />
+            <img
+              class="portrait portrait-lulu"
+              src={asset('icons/lulu.png')}
+              alt=""
+              aria-hidden="true"
+              width="164"
+              height="164"
+              decoding="async"
+            />
+          </div>
         </div>
       </section>
 

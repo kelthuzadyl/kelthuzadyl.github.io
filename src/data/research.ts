@@ -38,7 +38,7 @@ const PERSONAL_ROBOTICS_LAB_URL = 'https://www.imperial.ac.uk/personal-robotics/
 
 export const siteConfig = {
   name: 'Yilong',
-  fullName: 'Yilong Wang (汪亦龙)',
+  fullName: 'Yilong Wang',
   role: 'PhD student in Robot Learning',
   portrait: 'profile_square.jpg',
   bio: [
@@ -84,6 +84,7 @@ export const siteConfig = {
       links: [
         { label: 'Paper', href: 'https://arxiv.org/abs/2606.04269' },
         { label: 'Project', href: 'https://instant-fold.github.io/' },
+        { label: 'Code', href: 'https://github.com/kelthuzadyl/Instant-Fold' },
       ],
       video: {
         src: 'videos/instant-fold.mp4',
